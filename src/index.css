@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  --color-pine: #1e3d32;
+  --color-pine-deep: #132820;
+  --color-moss: #3d6b54;
+  --color-sage: #a8c4b4;
+  --color-mist: #e4eee8;
+  --color-honey: #c4a35a;
+  --color-honey-soft: #e8d5a3;
+  --color-river: #5d8494;
+  --color-sky: #7a9eab;
+  --color-ink: #1a241f;
+  --color-muted: #5a6b62;
+  --color-paper: #f3f7f4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(122, 158, 171, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 90% 0%, rgba(196, 163, 90, 0.12), transparent 50%),
+      linear-gradient(180deg, #eef4f0 0%, var(--color-paper) 40%, #e8f0ea 100%);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-honey) 45%, white);
+    color: var(--color-pine-deep);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-rise {
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-rise-delay {
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  }
+
+  .animate-rise-late {
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  }
+
+  .animate-drift {
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, 1%, 0);
+  }
+}
